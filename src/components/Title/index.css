@@ -1,0 +1,32 @@
+.project-title {
+  grid-column: 1 / -1;
+  grid-row: 1 / span 1;
+  background-color: salmon;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-gap: 1px;
+  padding: 1rem;
+}
+
+.banner{
+  grid-column: 1 / 2;
+  align-self: center;
+  justify-self: center;
+}
+
+.counter{
+  grid-column: 2 / -1;
+  display: grid;
+  margin: 1px;
+  justify-content: start;
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.win-count{
+  color: white;
+
+}
+
+.loss-count{
+  color: white;
+}

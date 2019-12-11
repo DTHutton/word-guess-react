@@ -1,0 +1,16 @@
+.project-instructions {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-row: 2 / span 1;
+  background-color: palegreen;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+}
+
+.howTo{
+  grid-column: 1 / 2;
+}
+
+.breakdown{
+  grid-column: 2 / -1;
+}
