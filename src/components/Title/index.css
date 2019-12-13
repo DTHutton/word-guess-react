@@ -14,7 +14,7 @@
   justify-self: center;
 }
 
-.counter{
+/* .counter{
   grid-column: 2 / -1;
   display: grid;
   margin: 1px;
@@ -29,4 +29,4 @@
 
 .loss-count{
   color: white;
-}
+} */

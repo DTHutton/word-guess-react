@@ -2,4 +2,25 @@
   grid-column: 1 / -1;
   grid-row: 3 / span 1;
   background-color: cornflowerblue;
+  grid-template-rows: 1fr 3fr 1fr;
+}
+
+.counter{
+  grid-row: 1 /2;
+  display: grid;
+  margin: 1px;
+  justify-items: center;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.counter-text{
+  color: white;
+}
+
+.currentWord{
+  grid-row: 2 / 3;
+}
+
+.boxOfShame{
+  grid-row: 3 / -1;
 }

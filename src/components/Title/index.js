@@ -10,10 +10,10 @@ export default function Title() {
         stick figure.
       </h3>
       <h6>He's guilty af</h6>
-      <div className="counter">
+      {/* <div className="counter">
         <h2 className="win-count">Wins: 0</h2>
         <h2 className="loss-count">Losses: 0</h2>
-      </div>
+      </div> */}
     </div>
   );
 }
