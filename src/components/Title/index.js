@@ -1,7 +1,7 @@
-import React from "react";
-import "./index.css";
+import React from 'react'
+import './index.css'
 
-export default function Title() {
+export default function Title () {
   return (
     <div className="project-title">
       <h1 className="banner">Word Guess</h1>
@@ -15,5 +15,5 @@ export default function Title() {
         <h2 className="loss-count">Losses: 0</h2>
       </div> */}
     </div>
-  );
+  )
 }

@@ -1,7 +1,7 @@
-import React from "react";
-import "./index.css";
+import React from 'react'
+import './index.css'
 
-export default function Instructions() {
+export default function Instructions () {
   return (
     <div className="project-instructions">
       <h3 className="howTo">
@@ -18,5 +18,5 @@ export default function Instructions() {
         </p>
       </div>
     </div>
-  );
+  )
 }

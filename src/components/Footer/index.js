@@ -1,6 +1,6 @@
-import React from "react";
-import "./index.css";
+import React from 'react'
+import './index.css'
 
-export default function Footer() {
-  return <div className="project-footer">Footer</div>;
+export default function Footer () {
+  return <div className="project-footer">Footer</div>
 }

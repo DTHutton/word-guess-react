@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 
-export default function WordToGuess(props) {
+export default function WordToGuess (props) {
   return (
     <div className="game">
       <div className="game__header">Word to Guess</div>
@@ -10,5 +10,5 @@ export default function WordToGuess(props) {
         ))}
       </ul>
     </div>
-  );
+  )
 }

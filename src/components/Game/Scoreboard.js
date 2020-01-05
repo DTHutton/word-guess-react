@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 
-export default function Scoreboard(props) {
+export default function Scoreboard (props) {
   return (
     <div className="scoreboard">
       <div className="info-block">
@@ -20,9 +20,11 @@ export default function Scoreboard(props) {
       <div className="info-block">
         <div className="info-block__header">Guesses Remaining</div>
         <div className="info-block__content">
-          {props.remainingGuessesValue} of 6
+          {props.remainingGuessesValue}
+          {' '}
+of 6
         </div>
       </div>
     </div>
-  );
+  )
 }
