@@ -5,10 +5,10 @@ export default function Instructions () {
   return (
     <div className="project-instructions">
       <h3 className="howTo">
-        The classic hangman game except you don't brutally murder an innocent
+        The classic hangman game except you don&apos;t brutally murder an innocent
         stick figure.
       </h3>
-      <h6>He's guilty af</h6>
+      <h6>He&apos;s guilty af</h6>
       <div className="breakdown">
         <h2>Instructions</h2>
         <p>
