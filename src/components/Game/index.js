@@ -1,80 +1,69 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Scoreboard from "./Scoreboard";
+import WordToGuess from "./WordToGuess";
 import { wordbank } from "./wordbank";
-import "./index.css";
+import './index.css';
 
-// game arrays
-const wordToGuess = [];
-const incorrectLetters = [];
-const incorrectGuesses = [];
-const correctGuesses = [];
-let gamesWon;
-let gamesLost;
+export default function Game(props) {
+  //? category
+  const initCategory =
+    wordbank[Math.floor(Math.random() * wordbank.length)].title;
+  const [category, setCategory] = useState(initCategory);
 
-// word and category arrays
-const { programs, platforms, accounts } = wordbank;
-const categoriesArr = [programs, platforms, accounts];
-const categoriesArrTitle = [
-  Object.keys({ programs })[0],
-  Object.keys({ platforms })[0],
-  Object.keys({ accounts })[0]
-];
-let catNum;
-let category;
-let word;
+  //? word
+  const initWord = () => {
+    const num = wordbank.findIndex(index => index.title === category);
+    const random = Math.floor(Math.random() * wordbank[num].items.length);
+    const selected = wordbank[num].items[random];
+    return selected;
+  };
+  const [word, setWord] = useState(initWord);
 
-//select category and select word from selected category
-const gameStart = () => {
-  catNum = Math.floor(Math.random() * categoriesArrTitle.length);
-  category =
-    categoriesArrTitle[catNum].charAt(0).toUpperCase() +
-    categoriesArrTitle[catNum].slice(1);
-  word =
-    categoriesArr[catNum][Math.floor(Math.random() * categoriesArr.length)];
+  //? underscores
+  const initUnderscores = word.replace(/./gi, "_").split("");
+  const [underscore, setUnderscore] = useState(initUnderscores);
 
-  // generate underscores for game
-  for (const letter of word) {
-    console.log(letter);
-    if (letter === " ") {
-      wordToGuess.push(" | ")
+  //? keypress
+  const [keyPressed, setKeyPressed] = useState();
+  const keyValidate = /[a-z]|[0-9]/gi;
+  const handleKeyPress = ({ key }) =>
+    key.match(keyValidate) && key !== "Enter"
+      ? setKeyPressed(key)
+      : alert(`${key} is not valid. Please select a valid alphanumeric key.`);
+  useEffect(() => {
+    window.addEventListener("keypress", handleKeyPress);
+    return () => {
+      window.removeEventListener("keypress", handleKeyPress);
+    };
+  }, []);
+
+  //? game score
+  const [incorrectGuess, setIncorrectGuess] = useState([]);
+  const [remainingGuesses, setRemainingGuesses] = useState(6);
+  const [gameRegex, setGameRegex] = useState([]);
+
+  useEffect(() => {
+    if (word.includes(keyPressed)) {
+      gameRegex.push(keyPressed);
+      const converter = gameRegex.join().replace(/,/gi, "|");
+      const replacer = new RegExp(`[^${converter}]`, "gi");
+      const newUnderscore = word.replace(replacer, "_").split("");
+      setUnderscore(newUnderscore);
     } else {
-      wordToGuess.push(" _")
+      const newIncorrectGuess = [...incorrectGuess, keyPressed];
+      setIncorrectGuess(newIncorrectGuess);
+      setRemainingGuesses(6 - incorrectGuess.length);
     }
-  }
-  console.log(wordToGuess);
-};
+  }, [keyPressed]);
 
-const handleOnKeyUp = event => {
-  let guess = event.key;
-  let keyVal = word.indexOf(guess);
-  if (keyVal > -1) {
-    correctGuesses.push(guess);
-    console.log(correctGuesses);
-  }
-}
-
-gameStart();
-
-export default function Game() {
   return (
-    <div className="project-game" tabIndex={-1} onKeyUp={handleOnKeyUp}>
-      <section className="counter">
-        <h2 id="win-count" className="counter-text">
-          Wins: {gamesWon}
-        </h2>
-        <h2 id="loss-count" className="counter-text">
-          Losses: {gamesLost}
-        </h2>
-      </section>
-
-      <section className="currentWord">
-        <div id="randCategory">Category: {category}</div>
-        <div id="randWord">Current Word: {wordToGuess}</div>
-      </section>
-
-      <section className="boxOfShame">
-        <div id="incLetters">Incorrect Letters: {incorrectLetters}</div>
-        <div className="incorrectCount">Incorrect Guesses: {incorrectGuesses} of 6</div>
-      </section>
+    <div className="container--game">
+      <Scoreboard
+        categoryValue={category}
+        incorrectGuessValue={incorrectGuess}
+        remainingGuessesValue={remainingGuesses}
+      />
+      <WordToGuess value={underscore} />
     </div>
   );
 }

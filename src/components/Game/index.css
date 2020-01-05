@@ -1,4 +1,4 @@
-.project-game {
+/* .project-game {
   grid-column: 1 / -1;
   grid-row: 3 / span 1;
   background-color: cornflowerblue;
@@ -23,4 +23,74 @@
 
 .boxOfShame{
   grid-row: 3 / -1;
+} */
+
+.container--game {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.scoreboard {
+  border: solid 1px red;
+  padding: 2px;
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.info-block {
+  border: solid 1px green;
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.info-block__header {
+  border: solid 1px purple;
+  padding: 1px;
+}
+
+.info-block__content {
+  border: solid 1px orange;
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  align-items: center;
+}
+
+.info-block__content>li {
+  list-style: none;
+  display: inline-block;
+  margin: 4px;
+  font-size: 40px
+}
+
+.game {
+  border: solid 1px darkgoldenrod;
+  margin: 5px;
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game__header {
+  font-weight: bold;
+}
+
+.game__content {
+  border: solid 1px red;
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  align-items: center;
+}
+
+.game__content>li {
+  list-style: none;
+  display: inline-block;
+  margin: 4px;
+  font-size: 40px
 }
