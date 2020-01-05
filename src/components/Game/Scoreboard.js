@@ -1,4 +1,11 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
+Scoreboard.propTypes = {
+  categoryValue: PropTypes.string,
+  incorrectGuessValue: PropTypes.array,
+  remainingGuessesValue: PropTypes.number
+}
 
 export default function Scoreboard (props) {
   return (

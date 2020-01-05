@@ -1,4 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
+WordToGuess.propTypes = {
+  value: PropTypes.array
+}
 
 export default function WordToGuess (props) {
   return (
