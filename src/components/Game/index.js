@@ -4,13 +4,13 @@ import WordToGuess from './WordToGuess'
 import { wordbank } from './wordbank'
 import './index.css'
 
-export default function Game(props) {
+export default function Game (props) {
   // ? category selection
   const initCategory = wordbank[Math.floor(Math.random() * wordbank.length)].title
   const [category, setCategory] = useState(initCategory)
 
   // ? word selection
-  function initWord() {
+  function initWord () {
     const categoryIndex = wordbank.findIndex((index) => index.title === category)
     const random = Math.floor(Math.random() * wordbank[categoryIndex].items.length)
     return wordbank[categoryIndex].items[random]
@@ -24,7 +24,7 @@ export default function Game(props) {
   // ? keypress validation and functions
   const [keyPressed, setKeyPressed] = useState()
   const keyValidate = /[a-z]|[0-9]/gi
-  function handleKeyPress({ key }) {
+  function handleKeyPress ({ key }) {
     if (key.match(keyValidate) && key !== 'Enter') {
       setKeyPressed(key)
     } else {
@@ -51,7 +51,7 @@ export default function Game(props) {
       gameRegex.push(keyPressed)
       //! setGameRegex([...gameRegex, keyPressed])
       //! -----------------------------------------------------------------------------
-      //? converts the array to string and replaces ',' with '|' so it functions as the 'or' operator in RegEX
+      // ? converts the array to string and replaces ',' with '|' so it functions as the 'or' operator in RegEX
       const converter = gameRegex.join().replace(/,/gi, '|')
       const replacer = new RegExp(`[^${converter}]`, 'gi')
       const newUnderscore = word.replace(replacer, '_').split('')
@@ -72,7 +72,7 @@ export default function Game(props) {
     */
   }, [keyPressed])
 
-  //? game win
+  // ? game win
   useEffect(() => {
     if (!underscore.includes('_')) {
       alert('Winner!!!')
