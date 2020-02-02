@@ -4,13 +4,13 @@ import WordToGuess from './WordToGuess'
 import { wordbank } from './wordbank'
 import './index.css'
 
-export default function Game (props) {
+export default function Game(props) {
   // ? category selection
   const initCategory = wordbank[Math.floor(Math.random() * wordbank.length)].title
   const [category, setCategory] = useState(initCategory)
 
   // ? word selection
-  function initWord () {
+  function initWord() {
     const categoryIndex = wordbank.findIndex((index) => index.title === category)
     const random = Math.floor(Math.random() * wordbank[categoryIndex].items.length)
     return wordbank[categoryIndex].items[random]
@@ -24,7 +24,7 @@ export default function Game (props) {
   // ? keypress validation and functions
   const [keyPressed, setKeyPressed] = useState()
   const keyValidate = /[a-z]|[0-9]/gi
-  function handleKeyPress ({ key }) {
+  function handleKeyPress({ key }) {
     if (key.match(keyValidate) && key !== 'Enter') {
       setKeyPressed(key)
     } else {
@@ -47,7 +47,11 @@ export default function Game (props) {
 
   useEffect(() => {
     if (word.includes(keyPressed)) {
-      //! this works, but i'm pretty sure it's sloppy. i've been looking into how to use state and effect hooks properly, but i don't understand why this works fine, but trying to write it like the setIncorrectGuess line below causes problems. it doesn't update the gameRegex state until you press another key what will update it again. i tried taking out the state hook and just using a variable set to an empty array, but it clears on re-render.
+      /* 
+      ! This works, but it's sloppy and gross looking. I've been looking into how to use state and effect hooks properly and 
+      ! I don't understand why this works fine, but trying to write it like the setIncorrectGuess line below causes problems. 
+      ! It doesn't update the gameRegex state until you press another key what will update it again.
+      */
       gameRegex.push(keyPressed)
       //! setGameRegex([...gameRegex, keyPressed])
       //! -----------------------------------------------------------------------------
@@ -63,8 +67,10 @@ export default function Game (props) {
       setIncorrectGuess([...incorrectGuess, keyPressed])
       setRemainingGuesses(chances - incorrectGuess.length)
     }
-    //! this warning is returned by React when the app reneders. need to research it because adding the missing dependencies causes an infinite render loop.
-    /*
+    /* 
+    ! This warning is returned by React when the app reneders. 
+    ! Adding the missing dependencies causes an infinite render loop.
+    * --------------------------------------------------------------
     ./src/components/Game/index.js
     Line 58:6:  React Hook useEffect has missing dependencies: 'gameRegex', 'incorrectGuess', and 'word'.
     Either include them or remove the dependency array. You can also do a functional update 'setIncorrectGuess(i => ...)'
